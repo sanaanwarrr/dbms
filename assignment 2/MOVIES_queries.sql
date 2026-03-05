@@ -13,7 +13,7 @@ CREATE TABLE Movie (
     title TEXT NOT NULL,
     year INTEGER,
     length INTEGER,
-    rating TEXT,
+    rating REAL,
     studioID INTEGER,
     FOREIGN KEY (studioID) REFERENCES Studio(studioID)
 );
@@ -58,26 +58,26 @@ INSERT INTO Actor (personID, name, gender) VALUES
 (14, 'Ryan Gosling', 'M');
 
 INSERT INTO Movie (movieID, title, year, length, studioID, rating) VALUES
-(101, 'GoldenEye', 1995, 130, 1, 'PG-13'),
-(102, 'Casino Royale', 2006, 144, 1, 'PG-13'),
-(103, 'Skyfall', 2012, 143, 1, 'PG-13'),
-(104, 'Legally Blonde', 2001, 96, 1, 'PG-13'),
-(105, 'Creed', 2015, 133, 1, 'PG-13'),
-(106, 'No Time to Die', 2021, 163, 1, 'PG-13'),
-(201, 'Star Wars: Episode IV - A New Hope', 1977, 121, 2, 'PG'),
-(202, 'Star Wars: Episode V - The Empire Strikes Back', 1980, 124, 2, 'PG'),
-(203, 'Star Wars: Episode VI - Return of the Jedi', 1983, 131, 2, 'PG'),
-(204, 'Star Wars: Episode I - The Phantom Menace', 1999, 136, 2, 'PG'),
-(205, 'Star Wars: Episode III - Revenge of the Sith', 2005, 140, 2, 'PG-13'),
-(301, 'Titanic', 1997, 194, 3, 'PG-13'), 
-(302, 'Inception', 2010, 148, 5, 'PG-13'), 
-(303, 'The Wolf of Wall Street', 2013, 180, 3, 'R'), 
-(304, 'The Revenant', 2015, 156, 4, 'R'), 
-(305, 'Catch Me If You Can', 2002, 141, 6, 'PG-13'),
-(401, 'La La Land', 2016, 128, 5, 'PG-13'),
-(402, 'Jurassic Park', 1993, 127, 6, 'PG-13'), 
-(403, 'The Dark Knight', 2008, 152, 5, 'PG-13'), 
-(404, 'Forrest Gump', 1994, 142, 3, 'PG-13');
+(101, 'GoldenEye', 1995, 130, 1, 7.2),
+(102, 'Casino Royale', 2006, 144, 1, 8.0),
+(103, 'Skyfall', 2012, 143, 1, 7.8),
+(104, 'Legally Blonde', 2001, 96, 1, 6.4),
+(105, 'Creed', 2015, 133, 1, 7.6),
+(106, 'No Time to Die', 2021, 163, 1, 7.3),
+(201, 'Star Wars: Episode IV - A New Hope', 1977, 121, 2, 8.6),
+(202, 'Star Wars: Episode V - The Empire Strikes Back', 1980, 124, 2, 8.7),
+(203, 'Star Wars: Episode VI - Return of the Jedi', 1983, 131, 2, 8.3),
+(204, 'Star Wars: Episode I - The Phantom Menace', 1999, 136, 2, 6.5),
+(205, 'Star Wars: Episode III - Revenge of the Sith', 2005, 140, 2, 7.6),
+(301, 'Titanic', 1997, 194, 3, 7.9), 
+(302, 'Inception', 2010, 148, 5, 8.8), 
+(303, 'The Wolf of Wall Street', 2013, 180, 3, 8.2), 
+(304, 'The Revenant', 2015, 156, 4, 8.0), 
+(305, 'Catch Me If You Can', 2002, 141, 6, 8.1),
+(401, 'La La Land', 2016, 128, 5, 8.0),
+(402, 'Jurassic Park', 1993, 127, 6, 8.2), 
+(403, 'The Dark Knight', 2008, 152, 5, 9.0), 
+(404, 'Forrest Gump', 1994, 142, 3, 8.8);
 
 INSERT INTO StarsIn (personID, movieID) VALUES
 -- MGM / Bond movies
@@ -131,11 +131,11 @@ ORDER BY name ASC;
 SELECT DISTINCT s.name
 FROM Studio s
 JOIN Movie m ON s.studioID = m.studioID
-WHERE m.title LIKE 'Star Wars'
+WHERE m.title LIKE '%Star Wars%'
 ORDER BY s.name ASC;
 
 -- Q7
-SELECT m.title, s.name AS studio_name, m.rating
+SELECT m.title, s.name AS studio_name, m.rating, m.year
 FROM Movie m
 JOIN Studio s ON m.studioID = s.studioID
 JOIN StarsIn si ON m.movieID = si.movieID
