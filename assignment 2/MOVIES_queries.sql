@@ -109,6 +109,7 @@ INSERT INTO StarsIn (personID, movieID) VALUES
 (14, 401); 
 
 -- Q3
+.www
 SELECT m.*
 FROM Movie m
 JOIN Studio s
@@ -117,17 +118,20 @@ WHERE s.name = 'MGM Studios' AND m.year > 1990 AND m.length > 90
 ORDER BY m.length DESC;
 
 -- Q4
+.www
 SELECT *
 FROM Movie 
 ORDER BY length ASC;
 
 -- Q5
+.www
 SELECT name
 FROM Actor
 WHERE gender = 'F'
 ORDER BY name ASC;
 
 -- Q6
+.www
 SELECT DISTINCT s.name
 FROM Studio s
 JOIN Movie m ON s.studioID = m.studioID
@@ -135,6 +139,7 @@ WHERE m.title LIKE '%Star Wars%'
 ORDER BY s.name ASC;
 
 -- Q7
+.www
 SELECT m.title, s.name AS studio_name, m.rating, m.year
 FROM Movie m
 JOIN Studio s ON m.studioID = s.studioID
@@ -144,6 +149,7 @@ WHERE a.name = 'Leonardo DiCaprio'
 ORDER BY m.year ASC;
 
 -- Q8
+.www
 SELECT s.name, SUM(m.length) AS total_length
 FROM Studio s
 JOIN Movie m ON s.studioID = m.studioID
@@ -151,12 +157,14 @@ GROUP BY s.name
 ORDER BY total_length DESC;
 
 -- Q9
+.www
 SELECT name
 FROM Studio
 WHERE city = 'Los Angeles'
 ORDER BY name ASC;
 
 -- Q10
+.www
 SELECT a.name, AVG(m.rating) AS avg_rating
 FROM Actor a
 JOIN StarsIn si ON a.personID = si.personID
